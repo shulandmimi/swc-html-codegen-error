@@ -1,13 +1,10 @@
 use std::{path::PathBuf, sync::Arc};
-
 use swc_common::{
     errors::HANDLER, input::SourceFileInput, sync::Lrc, FileName, Globals, SourceFile, SourceMap,
     GLOBALS,
 };
-
 use swc_ecma_transforms::helpers::{Helpers, HELPERS};
 use swc_error_reporters::handler::try_with_handler;
-
 use anyhow::Result;
 use swc_html_ast::Document;
 use swc_html_codegen::{
@@ -19,7 +16,6 @@ use swc_html_parser::{
     lexer::Lexer,
     parser::{Parser, ParserConfig},
 };
-
 pub struct Source {
     pub path: PathBuf,
     pub content: Lrc<String>,
@@ -65,8 +61,7 @@ fn main() {
         path: PathBuf::from("test.js"),
         content: Lrc::new(
             r#"
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -93,15 +88,13 @@ fn main() {
     );
 
     let parse_result = parser.parse_document().unwrap();
-    {
-        let mut minify_parse_result = parse_result.clone();
+    let mut minify_parse_result = parse_result.clone();
 
-        minify_document(&mut minify_parse_result, &MinifyOptions::default());
+    minify_document(&mut minify_parse_result, &MinifyOptions::default());
 
-        println!("html_code:\n{}", html_codegen(&parse_result));
-        println!(
-            "\nminify html_code:\n{}",
-            html_codegen(&minify_parse_result)
-        );
-    }
+    println!("html_code:\n{}", html_codegen(&parse_result));
+    println!(
+        "\nminify html_code:\n{}",
+        html_codegen(&minify_parse_result)
+    );
 }
