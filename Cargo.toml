@@ -1,0 +1,14 @@
+[package]
+name = "swc-rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+swc_common = "0.33.26"
+swc_ecma_transforms = "0.230.1"
+swc_error_reporters = "0.17.20"
+anyhow = "1.0.83"
+swc_html_parser = { version = "0.39.27" }
+swc_html_codegen = { version = "0.42.28" }
+swc_html_minifier = { version = "0.136.0" }
+swc_html_ast = "0.33.21"
